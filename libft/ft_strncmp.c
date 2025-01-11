@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 /**
 	* ft_strncmp - compares the first n bytes of the two strings s1 and s2
