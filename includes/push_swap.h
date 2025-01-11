@@ -18,5 +18,23 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+/*#include "../libft/libft.h"*/
 
+/*Structures*/
+struct	stack_node
+{
+	int					value;
+	struct	stack_node	*next;
+
+};
+typedef struct stack_node t_node;
+
+/*Stack dsa functions*/
+t_node	*stack_create_node(int value);
+t_node	*stack_push(t_node **head, t_node	*node);
+void	stack_free(t_node **head);
+void	stack_print(t_node *head);
+
+/*prototypes for src*/
+t_node	*tokenize_input(char **input);
 #endif
