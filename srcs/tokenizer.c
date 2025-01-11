@@ -2,43 +2,44 @@
 #include "../includes/common.h"
 #include "../includes/libft.h"
 
-void	free_str_array(char **list)
+static void	extract_list(char **list, t_node **stack)
 {
-	int	idx;
+	int		idx;
+	int		data;
+	t_node	*temp;
 
 	idx = 0;
 	while (list[idx])
 	{
-		free(list[idx]);
-		list[idx] = NULL;
+		data = atoi(list[idx]);
+		temp = stack_create_node(data);
+		if (!temp)
+			return ;
+		stack_push(stack, temp);
 		idx++;
 	}
-	free(list);
-	list = NULL;
 }
-
 
 t_node	*tokenize_input(char **input)
 {
-	t_node	*numbers;
+	t_node	*stack;
 	t_node	*temp;
 	int		idx;
+	int		i;
 	int		data;
 	 char	**list;
 
-	idx = 1;
-	numbers = NULL;
-	while (input[idx])
+	i = 1;
+	stack = NULL;
+
+	while (input[i])
 	{
-		list = ft_split(input[idx], ' ');
+		list = ft_split(input[i], ' ');
 		if (!list)
 			return (NULL);
-		data = atoi(input[idx]);
-		temp = stack_create_node(data);
-		if (!temp)
-			return (NULL);
-		stack_push(&numbers, temp);
-		idx++;
+		extract_list(list, &stack);
+		ft_double_free(list);
+		i++;
 	}
-	return (numbers);
+	return (stack);
 }

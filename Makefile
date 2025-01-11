@@ -1,6 +1,6 @@
 BUILDS=./build/0-main.c
 SRCS=./srcs/*
-LIBS=./libft.a
+LIBS=./build/libft.a
 NAME=push_swap
 
 $(NAME): $(BUILDS) $(SRCS) $(LIBS)
