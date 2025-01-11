@@ -23,6 +23,8 @@ t_node	*stack_create_node(int value);
 t_node	*stack_push(t_node **head, t_node	*node);
 void	stack_free(t_node **head);
 void	stack_print(t_node *head);
+t_node	*stack_last(t_node *head);
+void	sort_stack(t_node **head);
 
 /*prototypes for src*/
 t_node	*tokenize_input(char **input);

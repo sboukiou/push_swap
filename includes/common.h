@@ -11,6 +11,7 @@ struct	stack_node
 {
 	int					value;
 	struct	stack_node	*next;
+	struct	stack_node	*prev;
 
 };
 typedef struct stack_node t_node;
