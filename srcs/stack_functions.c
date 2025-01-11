@@ -11,6 +11,7 @@ t_node	*stack_create_node(int value)
 		return (NULL);
 	new_node->value = value;
 	new_node->next = NULL;
+	new_node->prev = NULL;
 	return (new_node);
 }
 
@@ -29,6 +30,7 @@ t_node	*stack_push(t_node **head, t_node	*node)
 	while (temp->next)
 		temp = temp->next;
 	temp->next = node;
+	temp->next->prev = temp;
 	return (node);
 }
 
@@ -60,3 +62,40 @@ void	stack_print(t_node *head)
 		temp = temp->next;
 	}
 }
+
+t_node	*stack_last(t_node *head)
+{
+	while (head->next)
+		head = head->next;
+	return (head);
+}
+
+void	stack_swap(t_node *node_a, t_node *node_b)
+{
+	int	temp;
+
+	temp = node_a->value;
+	node_a->value = node_b->value;
+	node_b->value = temp;
+}
+
+void	sort_stack(t_node **head)
+{
+	t_node	*temp;
+	t_node	*saved;
+	if (!head || !*head)
+		return ;
+	temp = *head;
+	int	temp_val;
+	while (temp)
+	{
+		saved = temp;
+		while (saved->prev && saved->value < saved->prev->value)
+		{
+			stack_swap(saved, saved->prev);
+			saved = saved->prev;
+		}
+		temp = temp->next;
+	}
+}
+
