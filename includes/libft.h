@@ -42,4 +42,5 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(const char *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_double_free(char **list);
 #endif

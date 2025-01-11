@@ -24,3 +24,19 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ft_bzero(buff, nmemb * size);
 	return (buff);
 }
+
+void	ft_double_free(char **list)
+{
+	int	idx;
+
+	idx = 0;
+	while (list[idx])
+	{
+		free(list[idx]);
+		list[idx] = NULL;
+		idx++;
+	}
+	free(list);
+	list = NULL;
+}
+
