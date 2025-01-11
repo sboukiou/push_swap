@@ -1,5 +1,6 @@
 #include "../includes/push_swap.h"
-#include <stdio.h>
+#include "../includes/common.h"
+#include "../includes/libft.h"
 
 void	free_str_array(char **list)
 {
@@ -29,9 +30,9 @@ t_node	*tokenize_input(char **input)
 	numbers = NULL;
 	while (input[idx])
 	{
-		/*list = ft_split(input[idx], ' ');*/
-		/*if (!list)*/
-		/*	return (NULL);*/
+		list = ft_split(input[idx], ' ');
+		if (!list)
+			return (NULL);
 		data = atoi(input[idx]);
 		temp = stack_create_node(data);
 		if (!temp)
