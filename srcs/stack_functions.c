@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 
-t_node	*stack_create_node(int value)
+t_node	*stack_create_node(int value, t_node *prev)
 {
 	t_node	*new_node;
 
@@ -11,63 +11,81 @@ t_node	*stack_create_node(int value)
 		return (NULL);
 	new_node->value = value;
 	new_node->next = NULL;
-	new_node->prev = NULL;
+	new_node->prev = prev;
 	return (new_node);
 }
 
-t_node	*stack_push(t_node **head, t_node	*node)
+t_stack	*stack_push_back(t_stack *stack_data, t_node	*node)
 {
 	t_node	*temp;
 
-	if (!head)
+	if (!stack_data)
 		return (NULL);
-	if (!(*head))
+	if (!stack_data->top)
 	{
-		*head = node;
-		return (node);
+		stack_data->top = node;
+		stack_data->bottom = node;
+		return (stack_data);
 	}
-	temp = *head;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = node;
-	temp->next->prev = temp;
-	return (node);
+	if (stack_data->bottom)
+		stack_data->bottom->next = node;
+	stack_data->bottom = node;
+	return (stack_data);
 }
 
-void	stack_free(t_node **head)
+t_stack	*stack_push_front(t_stack *stack, t_node *node)
+{
+	t_node	*temp;
+
+	if (!stack || !node)
+		return (NULL);
+	if (!stack->top)
+	{
+		stack->top = node;
+		stack->bottom = node;
+		return (stack);
+	}
+	temp = stack->top;
+	stack->top = node;
+	stack->top->next = temp;
+	stack->top->prev = NULL;
+	temp->prev = stack->top;
+	return (stack);
+}
+
+void	stack_free(t_stack *stack_data)
 {
 	t_node	*temp;
 	t_node	*to_free;
 
-	if (!head)
+	if (!stack_data)
 		return ;
-	temp = *head;
+	temp = stack_data->top;
 	while (temp)
 	{
 		to_free = temp;
 		temp = temp->next;
 		free(to_free);
 	}
-	head = NULL;
+	free(stack_data);
+	stack_data = NULL;
 }
 
-void	stack_print(t_node *head)
+void	stack_print(t_stack *stack)
 {
 	t_node	*temp;
 
-	temp = head;
+	if (!stack)
+		return  ;
+	temp = stack->top;
+	printf("--> | ");
 	while (temp)
 	{
-		printf("%d\n", temp->value);
+		printf(", %d ", temp->value);
 		temp = temp->next;
 	}
-}
-
-t_node	*stack_last(t_node *head)
-{
-	while (head->next)
-		head = head->next;
-	return (head);
+	printf("|\n");
+	printf("-----------\n");
 }
 
 void	stack_swap(t_node *node_a, t_node *node_b)
@@ -77,21 +95,25 @@ void	stack_swap(t_node *node_a, t_node *node_b)
 	temp = node_a->value;
 	node_a->value = node_b->value;
 	node_b->value = temp;
+	/*printf("swapping values --> %d %d\n", node_a->value, node_b->value);*/
 }
 
-void	sort_stack(t_node **head)
+void	sort_stack(t_stack *stack)
 {
+	/*printf("called sort_stack()\n");*/
 	t_node	*temp;
 	t_node	*saved;
-	if (!head || !*head)
+	if (!stack || !stack->top)
 		return ;
-	temp = *head;
+	temp = stack->top;
 	int	temp_val;
 	while (temp)
 	{
+		/*printf("Inloop\n");*/
 		saved = temp;
 		while (saved->prev && saved->value < saved->prev->value)
 		{
+			/*printf("in sort loop");*/
 			stack_swap(saved, saved->prev);
 			saved = saved->prev;
 		}
@@ -99,3 +121,28 @@ void	sort_stack(t_node **head)
 	}
 }
 
+t_stack	*stack_duplicate(t_stack *stack)
+{
+	t_stack	*new_stack;
+	t_node			*temp;
+	t_node			*copy;
+
+
+	if (!stack)
+		return (NULL);
+	new_stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!new_stack)
+		return (NULL);
+	temp =  stack->top;
+	new_stack->top = NULL;
+	new_stack->bottom = NULL;
+	while (temp)
+	{
+		copy = stack_create_node(temp->value, new_stack->bottom);
+		if (!copy)
+			return (stack_free(new_stack), NULL);
+		stack_push_back(new_stack, copy);
+		temp = temp->next;
+	}
+	return (new_stack);
+}

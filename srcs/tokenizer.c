@@ -2,7 +2,7 @@
 #include "../includes/common.h"
 #include "../includes/libft.h"
 
-static void	extract_list(char **list, t_node **stack)
+static void	extract_list(char **list, t_stack *stack)
 {
 	int		idx;
 	int		data;
@@ -12,32 +12,33 @@ static void	extract_list(char **list, t_node **stack)
 	while (list[idx])
 	{
 		data = atoi(list[idx]);
-		temp = stack_create_node(data);
+		temp = stack_create_node(data, stack->bottom);
 		if (!temp)
 			return ;
-		stack_push(stack, temp);
+		stack_push_back(stack, temp);
 		idx++;
 	}
 }
 
-t_node	*tokenize_input(char **input)
+t_stack	*tokenize_input(char **input)
 {
-	t_node	*stack;
-	t_node	*temp;
-	int		idx;
-	int		i;
-	int		data;
-	 char	**list;
+	t_stack	*stack;
+	t_node			*temp;
+	int				i;
+	 char			**list;
 
 	i = 1;
-	stack = NULL;
-
+	stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	stack->top = NULL;
+	stack->bottom = NULL;
 	while (input[i])
 	{
 		list = ft_split(input[i], ' ');
 		if (!list)
 			return (NULL);
-		extract_list(list, &stack);
+		extract_list(list, stack);
 		ft_double_free(list);
 		i++;
 	}
