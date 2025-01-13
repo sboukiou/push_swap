@@ -19,17 +19,19 @@ t_stack	*stack_push_back(t_stack *stack_data, t_node	*node)
 {
 	t_node	*temp;
 
-	if (!stack_data)
+	if (!stack_data || !node)
 		return (NULL);
 	if (!stack_data->top)
 	{
 		stack_data->top = node;
 		stack_data->bottom = node;
+		stack_data->top->next = NULL;
 		return (stack_data);
 	}
 	if (stack_data->bottom)
 		stack_data->bottom->next = node;
 	stack_data->bottom = node;
+	stack_data->bottom->next = NULL;
 	return (stack_data);
 }
 
@@ -40,16 +42,12 @@ t_stack	*stack_push_front(t_stack *stack, t_node *node)
 	if (!stack || !node)
 		return (NULL);
 	if (!stack->top)
-	{
-		stack->top = node;
-		stack->bottom = node;
-		return (stack);
-	}
+		return (stack_push_back(stack, node));
 	temp = stack->top;
+	node->next = temp;
+	node->prev = NULL;
+	stack->top->prev = node;
 	stack->top = node;
-	stack->top->next = temp;
-	stack->top->prev = NULL;
-	temp->prev = stack->top;
 	return (stack);
 }
 
@@ -78,13 +76,13 @@ void	stack_print(t_stack *stack)
 	if (!stack)
 		return  ;
 	temp = stack->top;
-	printf("--> | ");
+	printf("stack -----------\n");
 	while (temp)
 	{
-		printf(", %d ", temp->value);
+		printf("| %d |\n", temp->value);
 		temp = temp->next;
 	}
-	printf("|\n");
+	printf("\n");
 	printf("-----------\n");
 }
 
@@ -95,12 +93,10 @@ void	stack_swap(t_node *node_a, t_node *node_b)
 	temp = node_a->value;
 	node_a->value = node_b->value;
 	node_b->value = temp;
-	/*printf("swapping values --> %d %d\n", node_a->value, node_b->value);*/
 }
 
-void	sort_stack(t_stack *stack)
+void	stack_sort(t_stack *stack)
 {
-	/*printf("called sort_stack()\n");*/
 	t_node	*temp;
 	t_node	*saved;
 	if (!stack || !stack->top)
@@ -109,11 +105,9 @@ void	sort_stack(t_stack *stack)
 	int	temp_val;
 	while (temp)
 	{
-		/*printf("Inloop\n");*/
 		saved = temp;
 		while (saved->prev && saved->value < saved->prev->value)
 		{
-			/*printf("in sort loop");*/
 			stack_swap(saved, saved->prev);
 			saved = saved->prev;
 		}
@@ -145,4 +139,36 @@ t_stack	*stack_duplicate(t_stack *stack)
 		temp = temp->next;
 	}
 	return (new_stack);
+}
+
+void	stack_remove(t_stack *stack, t_node *node)
+{
+	t_node	*temp_prev;
+	t_node	*temp_next;
+
+
+	if (!stack || !node)
+		return ;
+	if (!node->prev && !node->next)
+	{
+		stack->top = NULL;
+		stack->bottom = NULL;
+		return ;
+	}
+	if (stack->top == node)
+	{
+		stack->top = node->next;
+		stack->top->prev = NULL;
+		return ;
+	}
+	if (stack->bottom == node)
+	{
+		stack->bottom = node->prev;
+		stack->bottom->next = NULL;
+		return ;
+	}
+	temp_prev = node->prev;
+	temp_next = node->next;
+	temp_prev->next = temp_next;
+	temp_next->prev = temp_prev;
 }

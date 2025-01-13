@@ -14,15 +14,16 @@ void	pab(t_stack *a, t_stack *b)
 
 	if (!a || !b || !a->top)
 		return ;
-	stack_push_back(b, a->top);
-	a->top = a->top->next;
-	b->bottom->next = NULL;
+	temp = a->top;
+	stack_remove(a, a->top);
+	stack_push_front(b, temp);
 }
-
 void	rab(t_stack *stack)
 {
 	t_node	*temp_top;
 
+	if (!stack || !stack->top || !stack->top->next)
+		return ;
 	temp_top = stack->top;
 	stack->top = temp_top->next;
 	stack->top->prev = NULL;
