@@ -25,9 +25,10 @@ t_stack	*stack_push_front(t_stack *stack, t_node *node);
 void	stack_free(t_stack *stack_data);
 void	stack_print(t_stack *stack_data);
 t_stack	*stack_last(t_stack *stack_data);
-void	sort_stack(t_stack *stack_data);
+void	stack_sort(t_stack *stack_data);
 void	stack_swap(t_node *node_a, t_node *node_b);
 t_stack	*stack_duplicate(t_stack *stack);
+void	stack_remove(t_stack *stack, t_node *node);
 
 /*Stack movements*/
 void	rab(t_stack *stack);
@@ -36,4 +37,5 @@ void	rrab(t_stack *stack);
 void	pab(t_stack *a, t_stack *b);
 /*prototypes for src*/
 t_stack	*tokenize_input(char **input);
+void	sorter(t_stack *stack_a, t_stack *stack_b);
 #endif
