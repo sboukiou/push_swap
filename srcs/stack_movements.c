@@ -34,15 +34,18 @@ void	rab(t_stack *stack)
 
 void	rrab(t_stack *stack)
 {
-	t_node	*temp_top;
 	t_node	*temp_bot;
 
-	temp_top = stack->top;
+	if (!stack || !stack->bottom || !stack->top)
+		return ;
+	if (!(stack->top->next) || !stack->bottom->prev)
+		return ;
 	temp_bot = stack->bottom;
-	stack->top = temp_bot;
-	stack->bottom = temp_bot->prev;
+	stack->bottom = stack->bottom->prev;
 	stack->bottom->next = NULL;
-	temp_bot->next = temp_top;
-	temp_top->next->prev = temp_bot;
-	
+
+	stack->top->prev = temp_bot;
+	temp_bot->next = stack->top;
+	temp_bot->prev = NULL;
+	stack->top = temp_bot;
 }
