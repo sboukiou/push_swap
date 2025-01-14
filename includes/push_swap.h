@@ -29,6 +29,8 @@ void	stack_sort(t_stack *stack_data);
 void	stack_swap(t_node *node_a, t_node *node_b);
 t_stack	*stack_duplicate(t_stack *stack);
 void	stack_remove(t_stack *stack, t_node *node);
+int	stack_index_of(t_stack *stack, int value);
+int	stack_size(t_stack *stack);
 
 /*Stack movements*/
 void	rab(t_stack *stack);
