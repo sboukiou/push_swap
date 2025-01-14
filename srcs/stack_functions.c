@@ -17,8 +17,6 @@ t_node	*stack_create_node(int value, t_node *prev)
 
 t_stack	*stack_push_back(t_stack *stack_data, t_node	*node)
 {
-	t_node	*temp;
-
 	if (!stack_data || !node)
 		return (NULL);
 	if (!stack_data->top)
@@ -102,7 +100,6 @@ void	stack_sort(t_stack *stack)
 	if (!stack || !stack->top)
 		return ;
 	temp = stack->top;
-	int	temp_val;
 	while (temp)
 	{
 		saved = temp;
@@ -171,4 +168,36 @@ void	stack_remove(t_stack *stack, t_node *node)
 	temp_next = node->next;
 	temp_prev->next = temp_next;
 	temp_next->prev = temp_prev;
+}
+
+int	stack_index_of(t_stack *stack, int value)
+{
+	t_node	*temp;
+	int	index;
+
+	index = 0;
+	temp = stack->top;
+	while (temp)
+	{
+		if (temp->value == value)
+			return (index);
+		temp = temp->next;
+		index++;
+	}
+	return (index);
+}
+
+int	stack_size(t_stack *stack)
+{
+	int		size;
+	t_node	*temp;
+
+	temp = stack->top;
+	size = 0;
+	while (temp)
+	{
+		size++;
+		temp = temp->next;
+	}
+	return (size);
 }
