@@ -23,7 +23,6 @@ static void	extract_list(char **list, t_stack *stack)
 t_stack	*tokenize_input(char **input)
 {
 	t_stack	*stack;
-	t_node			*temp;
 	int				i;
 	 char			**list;
 
