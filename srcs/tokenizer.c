@@ -2,6 +2,23 @@
 #include "../includes/common.h"
 #include "../includes/libft.h"
 
+int	is_zero(char *str)
+{
+	int	zero;
+	int	zerop;
+	int	zeron;
+	if (ft_strlen(str) > 2)
+		return (0);
+	zero = ft_strncmp("0", str, 1);
+	zerop = ft_strncmp("+0", str, 2);
+	zeron = ft_strncmp("-0", str, 2);
+	if (zero && zerop && zeron)
+		return (0);
+	return (1);
+}
+
+
+
 static void	extract_list(char **list, t_stack *stack)
 {
 	int		idx;
