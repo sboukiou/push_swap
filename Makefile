@@ -1,6 +1,6 @@
 BUILDS=./build/0-main.c
 SRCS=./srcs/*
-LIBS=./build/libft.a
+LIBS=./libft/*.c
 NAME=push_swap
 CC=cc -Wall -Werror -Wextra
 
