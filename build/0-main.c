@@ -4,18 +4,16 @@
 
 int main(int ac, char **av)
 {
-	t_node	*numbers;
-	t_node	*temp;
+	t_stack	*numbers;
+	/*t_node	*temp;*/
 	if(ac < 2)
-	{
-		printf("Arguments needed\n");
 		return (0);
-	}
+	error_check(av);
 	numbers = tokenize_input(av);
 	if (!numbers)
 		printf("Nothing returned from tokenizer, Leaving ...\n");
 	stack_print(numbers);
-	stack_free(&numbers);
+	stack_free(numbers);
 	return (0);
 
 }
