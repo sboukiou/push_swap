@@ -34,6 +34,7 @@ void	rab(t_stack *stack)
 
 void	rrab(t_stack *stack)
 {
+	printf("into rra\n");
 	t_node	*temp_bot;
 
 	if (!stack || !stack->bottom || !stack->top)

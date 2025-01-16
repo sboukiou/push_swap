@@ -201,3 +201,20 @@ int	stack_size(t_stack *stack)
 	}
 	return (size);
 }
+
+int	stack_checkdup(t_stack *stack, int value)
+{
+	t_node	*temp;
+	int	count;
+	if (!stack || !stack->top)
+		return (0);
+	temp = stack->top;
+	count = 0;
+	while (temp)
+	{
+		if (temp->value == value)
+			count++;
+		temp = temp->next;
+	}
+	return (count);
+}
