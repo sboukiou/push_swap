@@ -32,11 +32,11 @@ static int	is_delim(char c)
 	* @nptr: Alphanum string to convert
 	* Return: An int depending on the nptr
 */
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int				count;
-	int				sign;
-	unsigned int	num;
+	int		count;
+	int		sign;
+	long	num;
 
 	count = 0;
 	while (is_delim(nptr[count]) && nptr[count])

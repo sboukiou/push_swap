@@ -6,6 +6,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+#include <limits.h>
 
 /*First argument ---> Top of the stack*/
 /*Moves --> | sa sb ss ra ra rr rra rra rrr*/
