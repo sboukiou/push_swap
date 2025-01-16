@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 
-t_node	*stack_create_node(int value, t_node *prev)
+t_node	*stack_create_node(int value)
 {
 	t_node	*new_node;
 
@@ -11,42 +11,33 @@ t_node	*stack_create_node(int value, t_node *prev)
 		return (NULL);
 	new_node->value = value;
 	new_node->next = NULL;
-	new_node->prev = prev;
 	return (new_node);
 }
 
-t_stack	*stack_push_back(t_stack *stack_data, t_node	*node)
+void	stack_push_back(t_stack *stack, t_node	*node)
 {
-	if (!stack_data || !node)
-		return (NULL);
-	if (!stack_data->top)
+	if (!stack || !node)
+		return ;
+	node->next = NULL;
+	if (!stack->top)
 	{
-		stack_data->top = node;
-		stack_data->bottom = node;
-		stack_data->top->next = NULL;
-		return (stack_data);
+		stack->top = node;
+		stack->bottom = node;
+		return ;
 	}
-	if (stack_data->bottom)
-		stack_data->bottom->next = node;
-	stack_data->bottom = node;
-	stack_data->bottom->next = NULL;
-	return (stack_data);
+	stack->bottom->next = node;
+	stack->bottom = node;
 }
 
-t_stack	*stack_push_front(t_stack *stack, t_node *node)
+void	stack_push_front(t_stack *stack, t_node *node)
 {
-	t_node	*temp;
 
 	if (!stack || !node)
-		return (NULL);
+		return ;
 	if (!stack->top)
 		return (stack_push_back(stack, node));
-	temp = stack->top;
-	node->next = temp;
-	node->prev = NULL;
-	stack->top->prev = node;
+	node->next = stack->top;
 	stack->top = node;
-	return (stack);
 }
 
 void	stack_free(t_stack *stack_data)
@@ -64,7 +55,6 @@ void	stack_free(t_stack *stack_data)
 		free(to_free);
 	}
 	free(stack_data);
-	stack_data = NULL;
 }
 
 void	stack_print(t_stack *stack)
@@ -95,19 +85,16 @@ void	stack_swap(t_node *node_a, t_node *node_b)
 
 void	stack_sort(t_stack *stack)
 {
+	/*bubble sort implementation*/
+	/*Insertion sort removed*/
 	t_node	*temp;
-	t_node	*saved;
 	if (!stack || !stack->top)
 		return ;
 	temp = stack->top;
 	while (temp)
 	{
-		saved = temp;
-		while (saved->prev && saved->value < saved->prev->value)
-		{
-			stack_swap(saved, saved->prev);
-			saved = saved->prev;
-		}
+		if (temp->next && temp->next->value < temp->value)
+			stack_swap(temp, temp->next);
 		temp = temp->next;
 	}
 }
@@ -129,7 +116,7 @@ t_stack	*stack_duplicate(t_stack *stack)
 	new_stack->bottom = NULL;
 	while (temp)
 	{
-		copy = stack_create_node(temp->value, new_stack->bottom);
+		copy = stack_create_node(temp->value);
 		if (!copy)
 			return (stack_free(new_stack), NULL);
 		stack_push_back(new_stack, copy);
@@ -140,34 +127,26 @@ t_stack	*stack_duplicate(t_stack *stack)
 
 void	stack_remove(t_stack *stack, t_node *node)
 {
-	t_node	*temp_prev;
-	t_node	*temp_next;
-
-
-	if (!stack || !node)
+	t_node	*temp;
+	t_node	*to_remove;
+	if (!stack || !node || !stack->top)
 		return ;
-	if (!node->prev && !node->next)
-	{
-		stack->top = NULL;
-		stack->bottom = NULL;
-		return ;
-	}
 	if (stack->top == node)
 	{
 		stack->top = node->next;
-		stack->top->prev = NULL;
 		return ;
 	}
-	if (stack->bottom == node)
+	temp = stack->top;
+	while (temp)
 	{
-		stack->bottom = node->prev;
-		stack->bottom->next = NULL;
-		return ;
+		if (temp->next == node)
+		{
+			to_remove = temp->next;
+			temp->next = to_remove->next;
+			return ;
+		}
+		temp = temp->next;
 	}
-	temp_prev = node->prev;
-	temp_next = node->next;
-	temp_prev->next = temp_next;
-	temp_next->prev = temp_prev;
 }
 
 int	stack_index_of(t_stack *stack, int value)
