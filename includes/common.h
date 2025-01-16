@@ -7,17 +7,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-/*First argument ---> Top of the stack*/
-/*Moves --> | sa sb ss ra ra rr rra rra rrr*/
-			/*sa : Swap top 2 elements of stack a*/
-			/*sb : Swap top 2 elements of stack a*/
 
 /*Structures*/
 struct	stack_node
 {
 	int					value;
 	struct	stack_node	*next;
-	struct	stack_node	*prev;
 
 };
 typedef struct stack_node t_node;
