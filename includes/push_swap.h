@@ -16,6 +16,8 @@
 
 /*#include "../libft/libft.h"*/
 #include "./common.h"
+#include "./libft.h"
+#include "./error.h"
 
 
 /*Stack dsa functions*/
