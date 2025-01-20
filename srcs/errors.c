@@ -6,18 +6,35 @@ static void	quit(void)
 	exit(0);
 }
 
-static void	error_duplicate(char **av, char *arg, int position)
+static void	error_duplicate(t_stack *stack, int value)
 {
-	int	idx;
-	if (!av || !arg)
-		return ;
+	t_node	*temp;
+	int		count;
 
-	idx = 1;
-	while (av[idx])
+	if (!stack || !stack->top)
+		return ;
+	count = 0;
+	temp = stack->top;
+	while (temp)
 	{
-		if (ft_strcmp(av[idx], arg) == 0 && idx != position)
-			quit();
-		idx++;
+		if (temp->value == value)
+			count++;
+		temp = temp->next;
+	}
+	if (count > 1)
+		quit();
+}
+
+void	error_stack_dup(t_stack *stack)
+{
+	t_node	*temp;
+	if (!stack || !stack->top)
+		return ;
+	temp = stack->top;
+	while (temp)
+	{
+		error_duplicate(stack, temp->value);
+		temp = temp->next;
 	}
 }
 
@@ -27,8 +44,6 @@ static void	error_notnumber(char *str)
 
 	if (!str)
 		return ;
-	if (ft_strlen(str) > 10)
-		quit();
 	num = ft_atoi(str);
 	if (num == 0)
 	{
@@ -42,12 +57,17 @@ static void	error_notnumber(char *str)
 void	error_check(char **av)
 {
 	int	idx;
+	int	jdx;
+	char **list;
 
 	idx = 1;
 	while (av[idx])
 	{
-		error_duplicate(av, av[idx], idx);
-		error_notnumber(av[idx]);
+		list = ft_split(av[idx], ' ');
+		jdx = 0;
+		while (list[jdx])
+			error_notnumber(list[jdx++]);
+		ft_double_free(list);
 		idx++;
 	}
 }
