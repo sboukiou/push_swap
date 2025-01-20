@@ -22,7 +22,10 @@ static void	error_duplicate(t_stack *stack, int value)
 		temp = temp->next;
 	}
 	if (count > 1)
+	{
+		stack_free(stack);
 		quit();
+	}
 }
 
 void	error_stack_dup(t_stack *stack)
