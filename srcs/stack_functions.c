@@ -88,13 +88,19 @@ void	stack_sort(t_stack *stack)
 	/*bubble sort implementation*/
 	/*Insertion sort removed*/
 	t_node	*temp;
+	t_node	*node;
 	if (!stack || !stack->top)
 		return ;
 	temp = stack->top;
 	while (temp)
 	{
-		if (temp->next && temp->next->value < temp->value)
-			stack_swap(temp, temp->next);
+		node = stack->top;
+		while (node->next)
+		{
+			if (node->value > node->next->value)
+				stack_swap(node, node->next);
+			node = node->next;
+		}
 		temp = temp->next;
 	}
 }
