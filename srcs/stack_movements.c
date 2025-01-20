@@ -31,5 +31,12 @@ void	rab(t_stack *stack)
 
 void	rrab(t_stack *stack)
 {
-	(void)stack;
+	t_node	*temp;
+
+	if (!stack || !stack->top)
+		return ;
+
+	temp = stack->bottom;
+	stack_remove(stack, temp);
+	stack_push_front(stack, temp);
 }
