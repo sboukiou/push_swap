@@ -22,6 +22,11 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
+/*void	sort_size_three(t_stack *stack_a, t_stack *stack_b)*/
+/*{*/
+/**/
+/*}*/
+
 void	sorter(t_stack *stack_a, t_stack *stack_b)
 {
 	(void)stack_a;
@@ -36,10 +41,21 @@ void	sorter(t_stack *stack_a, t_stack *stack_b)
 	temp = ref->top;
 	while (temp)
 	{
-		while (stack_a->top->value != temp->value)
+		if (stack_index_of(stack_a, temp->value) > stack_size(stack_a) / 2)
 		{
-			printf("rra\n");
-			rrab(stack_a);
+			while (stack_a->top->value != temp->value)
+			{
+				printf("rra\n");
+				rrab(stack_a);
+			}
+		}
+		else
+		{
+			while (stack_a->top->value != temp->value)
+			{
+				printf("ra\n");
+				rab(stack_a);
+			}
 		}
 		printf("pb\n");
 		pab(stack_a, stack_b);
