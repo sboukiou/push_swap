@@ -2,7 +2,15 @@
 #include <stdlib.h>
 #include <limits.h>
 
-int	not_in(int *arr, int value, int size)
+/**
+	* deja_vue	- Checks if a value exists already in an array
+	* @arr: Array to check
+	* @value: Value to look for
+	* @size: size of the array
+	* Return: 0 if its found. 1 otherwise.
+*/
+
+int	deja_vue(int *arr, int value, int size)
 {
 	for (int i = 0; i < size; i++)
 	{
@@ -11,6 +19,14 @@ int	not_in(int *arr, int value, int size)
 	}
 	return (1);
 }
+
+/**
+	* main - Entry point
+	* Generates a random set of values with a given size
+	* @ac: Number of arguments provided
+	* @av: Arguments.
+	* Return: 0 on success
+*/
 
 int main(int ac, char **av)
 {
@@ -29,7 +45,7 @@ int main(int ac, char **av)
 	for (int i = 0; i<= size; i++)
 	{
 		value = rand();
-		while (not_in(chunks, value, size) == 0)
+		while (deja_vue(chunks, value, size) == 0)
 			value = rand();
 		chunks[i] = value;
 	}
