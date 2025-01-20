@@ -141,6 +141,8 @@ void	stack_remove(t_stack *stack, t_node *node)
 	{
 		if (temp->next == node)
 		{
+			if (stack->bottom == node)
+				stack->bottom = temp;
 			to_remove = temp->next;
 			temp->next = to_remove->next;
 			return ;
