@@ -10,7 +10,7 @@ int main(int ac, char **av)
 		return (0);
 	error_check(av);
 	stack_a = tokenize_input(av);
-	stack_duplicate(stack_a);
+	error_stack_dup(stack_a);
 	stack_b = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack_a || !stack_b)
 		printf("Nothing returned from tokenizer, Leaving ...\n"), exit(0);
