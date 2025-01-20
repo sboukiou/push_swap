@@ -29,7 +29,7 @@ static void	extract_list(char **list, t_stack *stack)
 	while (list[idx])
 	{
 		data = atoi(list[idx]);
-		temp = stack_create_node(data, stack->bottom);
+		temp = stack_create_node(data);
 		if (!temp)
 			return ;
 		stack_push_back(stack, temp);

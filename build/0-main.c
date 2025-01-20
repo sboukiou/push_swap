@@ -1,5 +1,4 @@
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
 
 int main(int ac, char **av)
@@ -11,7 +10,7 @@ int main(int ac, char **av)
 		return (0);
 	error_check(av);
 	stack_a = tokenize_input(av);
-	error_duplicate(stack_a);
+	stack_duplicate(stack_a);
 	stack_b = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack_a || !stack_b)
 		printf("Nothing returned from tokenizer, Leaving ...\n"), exit(0);
@@ -19,14 +18,14 @@ int main(int ac, char **av)
 	stack_b->top = NULL;
 	stack_b->bottom = NULL;
 	/*----------------------------------------------------*/
-	printf("Stack initialized\n-------------\n");
-	stack_print(stack_a);
+	/*printf("Stack initialized\n-------------\n");*/
+	/*stack_print(stack_a);*/
 	/*----------------------------------------------------*/
 
 	/* rra works fine so far */
 	/*----------------------------------------------------*/
-	printf("aplying rra ...\n-------------\n");
-	stack_print(stack_a);
+	/*printf("aplying rra ...\n-------------\n");*/
+	/*stack_print(stack_a);*/
 	sorter(stack_a, stack_b);
 
 	/*----------------------------------------------------*/

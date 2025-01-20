@@ -20,33 +20,23 @@ void	pab(t_stack *a, t_stack *b)
 }
 void	rab(t_stack *stack)
 {
-	t_node	*temp_top;
+	t_node	*temp;
 
-	if (!stack || !stack->top || !stack->top->next)
+	if (!stack || !stack->top)
 		return ;
-	temp_top = stack->top;
-	stack->top = temp_top->next;
-	stack->top->prev = NULL;
-	stack->bottom->next = temp_top;
-	temp_top->next = NULL;
-	stack->bottom = temp_top;
+	temp = stack->top;
+	stack_remove(stack, temp);
+	stack_push_back(stack, temp);
 }
 
 void	rrab(t_stack *stack)
 {
-	printf("into rra\n");
-	t_node	*temp_bot;
+	t_node	*temp;
 
-	if (!stack || !stack->bottom || !stack->top)
+	if (!stack || !stack->top)
 		return ;
-	if (!(stack->top->next) || !stack->bottom->prev)
-		return ;
-	temp_bot = stack->bottom;
-	stack->bottom = stack->bottom->prev;
-	stack->bottom->next = NULL;
 
-	stack->top->prev = temp_bot;
-	temp_bot->next = stack->top;
-	temp_bot->prev = NULL;
-	stack->top = temp_bot;
+	temp = stack->bottom;
+	stack_remove(stack, temp);
+	stack_push_front(stack, temp);
 }
