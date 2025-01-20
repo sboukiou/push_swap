@@ -24,39 +24,27 @@ int	is_sorted(t_stack *stack)
 
 void	sorter(t_stack *stack_a, t_stack *stack_b)
 {
+	(void)stack_a;
+	(void)stack_b;
 	t_stack	*ref;
 	t_node	*temp;
-	int	size;
 
 	ref = stack_duplicate(stack_a);
 	if (!ref)
 		return ;
 	stack_sort(ref);
 	temp = ref->top;
-	size = stack_size(stack_a);
-
 	while (temp)
 	{
-		while (stack_a->top && stack_a->top->value != temp->value)
+		while (stack_a->top->value != temp->value)
 		{
-			if (stack_index_of(stack_a, temp->value) < size / 2)
-				while (stack_a->top && stack_a->top->next && stack_a->top->value != temp->value)
-				{
-					printf("ra\n");
-					rab(stack_a);
-				}
-			else
-				while (stack_a->top && stack_a->top->next && stack_a->top->value != temp->value)
-				{
-					printf("rra\n");
-					rrab(stack_a);
-				}
+			printf("rra\n");
+			rrab(stack_a);
 		}
 		printf("pb\n");
 		pab(stack_a, stack_b);
 		temp = temp->next;
 	}
-
 
 	while (stack_b->top)
 	{
