@@ -33,12 +33,20 @@ int	stack_index_of(t_stack *stack, int value);
 int	stack_size(t_stack *stack);
 int	stack_checkdup(t_stack *stack, int value);
 
+
 /*Stack movements*/
 void	rab(t_stack *stack);
 void	sab(t_stack *stack);
 void	rrab(t_stack *stack);
 void	pab(t_stack *a, t_stack *b);
+
+
 /*prototypes for src*/
 t_stack	*tokenize_input(char **input);
+
+
+/*Sorting funcs*/
 void	sorter(t_stack *stack_a, t_stack *stack_b);
+void	sort_size_two(t_stack *stack_a, t_stack *stack_b);
+
 #endif
