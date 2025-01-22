@@ -4,28 +4,55 @@
 int	is_sorted(t_stack *stack)
 {
 	t_stack	*ref;
+	t_node	*temp_ref;
+	t_node	*temp_stack;
 
 	ref = stack_duplicate(stack);
 	if (!ref)
-		return (-12);
+		return (0);
 	stack_sort(ref);
-	while (ref->top)
+	temp_ref = ref->top;
+	temp_stack = stack->top;
+	while (temp_ref)
 	{
-		if (ref->top->value != stack->top->value)
+		if (temp_ref->value != temp_stack->value)
 		{
 			stack_free(ref);
 			return (0);
 		}
-		ref->top = ref->top->next;
+		temp_ref = temp_ref->next;
+		temp_stack = temp_stack->next;
 	}
 	stack_free(ref);
 	return (1);
 }
 
-/*void	sort_size_three(t_stack *stack_a, t_stack *stack_b)*/
-/*{*/
-/**/
-/*}*/
+void	sort_size_three(t_stack *stack_a)
+{
+	t_node	*temp;
+
+	temp = stack_a->top;
+	if (temp->value > temp->next->value && temp->value < stack_a->bottom->value)
+		return (printf("sa\n"), sab(stack_a));
+	if (temp->value < temp->next->value && temp->value > stack_a->bottom->value)
+		return (printf("rra\n"), rrab(stack_a));
+	if (temp->value > temp->next->value && temp->value > stack_a->bottom->value)
+	{
+		temp = temp->next;
+		if (temp->value > temp->next->value)
+		{
+			printf("sa\n");
+			sab(stack_a);
+			return (printf("rra\n"), rrab(stack_a));
+		}
+		if (temp->value < temp->next->value)
+		{
+			printf("rra\n");
+			rrab(stack_a);
+			return (printf("rra\n"), rrab(stack_a));
+		}
+	}
+}
 
 void	sorter(t_stack *stack_a, t_stack *stack_b)
 {
@@ -34,6 +61,8 @@ void	sorter(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*ref;
 	t_node	*temp;
 
+	if (stack_size(stack_a) == 3)
+		return (sort_size_three(stack_a));
 	ref = stack_duplicate(stack_a);
 	if (!ref)
 		return ;
