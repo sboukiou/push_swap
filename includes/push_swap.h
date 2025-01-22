@@ -31,7 +31,7 @@ t_stack	*stack_duplicate(t_stack *stack);
 void	stack_remove(t_stack *stack, t_node *node);
 int	stack_index_of(t_stack *stack, int value);
 int	stack_size(t_stack *stack);
-int	stack_checkdup(t_stack *stack, int value);
+int	is_sorted(t_stack *stack);
 
 /*Stack movements*/
 void	rab(t_stack *stack);
