@@ -6,74 +6,86 @@ static void	quit(void)
 	exit(0);
 }
 
-static void	error_duplicate(t_stack *stack, int value)
+static int	not_numerical(char *string)
 {
-	t_node	*temp;
+	if (ft_strlen(string) > 10)
+		return (1);
+	if (ft_atoi(string) == 0)
+	{
+		if (ft_strlen(string) > 2)
+			return (1);
+		if (ft_strcmp(string, "0") && ft_strcmp(string, "-0") && ft_strcmp(string, "-0"))
+			return (1);
+	}
+	if (ft_atoi(string) == -1 && ft_strcmp(string, "-1"))
+		return (1);
+	return (0);
+}
+
+static int	deja_vue(char **args, char *string)
+{
+	int		idx;
 	int		count;
 
-	if (!stack || !stack->top)
-		return ;
+	if (!args || !string)
+		return (1);
+	idx = 0;
 	count = 0;
-	temp = stack->top;
-	while (temp)
+	while (args[idx])
 	{
-		if (temp->value == value)
+		if (ft_strcmp(args[idx], string) == 0)
 			count++;
-		temp = temp->next;
+		idx++;
 	}
 	if (count > 1)
-	{
-		stack_free(stack);
-		quit();
-	}
-}
-
-void	error_stack_dup(t_stack *stack)
-{
-	t_node	*temp;
-	if (!stack || !stack->top)
-		return ;
-	temp = stack->top;
-	while (temp)
-	{
-		error_duplicate(stack, temp->value);
-		temp = temp->next;
-	}
-	return ;
-}
-
-static int	error_notnumber(char *str)
-{
-	int	num;
-
-	if (!str)
-		return -1;
-	num = ft_atoi(str);
-	if (num == 0)
-	{
-		if (ft_strcmp(str,"0") && ft_strcmp(str,"-0") && ft_strcmp(str,"-0"))
-			return (-1);
-	}
-	if (num == -1 && ft_strcmp(str, "-1"))
-			return (-1);
+		return (1);
 	return (0);
+}
+
+static char	**join_args(char **av)
+{
+	int	idx;
+	char	*buffer;
+	char	**args;
+	char	*temp;
+
+	idx = 1;
+	buffer = ft_strjoin("", " ");
+	while (av[idx])
+	{
+		temp = buffer;
+		buffer = ft_strjoin(buffer, av[idx]);
+		free(temp);
+		temp = buffer;
+		buffer = ft_strjoin(buffer, " ");
+		free(temp);
+		if (!buffer)
+			quit();
+		idx++;
+	}
+	args = ft_split(buffer, ' ');
+	free(buffer);
+	return (args);
 }
 
 void	error_check(char **av)
 {
+	char	**args;
 	int	idx;
-	int	jdx;
-	char **list;
 
+	args = join_args(av);
+	if (!args)
+		quit();
 	idx = 1;
-	while (av[idx])
+	while (args[idx])
 	{
-		list = ft_split(av[idx], ' ');
-		jdx = 0;
-		while (list[jdx])
-			error_notnumber(list[jdx++]);
-		ft_double_free(list);
+		if (deja_vue(args, args[idx]) || not_numerical(args[idx]))
+		{
+			ft_double_free(args);
+			quit();
+		}
 		idx++;
 	}
+	ft_double_free(args);
 }
 
