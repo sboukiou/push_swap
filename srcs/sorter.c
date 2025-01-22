@@ -39,11 +39,10 @@ void	sorter(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*ref;
 	t_node	*temp;
 
-	if (stack_size(stack_a) == 2)
-	{
-		sort_size_two(stack_a, stack_b);
+	if (stack_size(stack_a) == 1)
 		return ;
-	}
+	else if (stack_size(stack_a) == 1)
+		return (sort_size_two(stack_a, stack_b));
 	ref = stack_duplicate(stack_a);
 	if (!ref)
 		return ;
