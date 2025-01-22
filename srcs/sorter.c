@@ -22,10 +22,15 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-/*void	sort_size_three(t_stack *stack_a, t_stack *stack_b)*/
-/*{*/
-/**/
-/*}*/
+void	sort_size_two(t_stack *stack_a, t_stack *stack_b)
+{
+	(void)stack_b;
+	if (stack_a->top->value > stack_a->top->next->value)
+	{
+		stack_swap(stack_a->top, stack_a->top->next);
+		printf("sa\n");
+	}
+}
 
 void	sorter(t_stack *stack_a, t_stack *stack_b)
 {
@@ -34,6 +39,11 @@ void	sorter(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*ref;
 	t_node	*temp;
 
+	if (stack_size(stack_a) == 2)
+	{
+		sort_size_two(stack_a, stack_b);
+		return ;
+	}
 	ref = stack_duplicate(stack_a);
 	if (!ref)
 		return ;
