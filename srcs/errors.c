@@ -6,9 +6,23 @@ static void	quit(void)
 	exit(0);
 }
 
+static int not_only_zeros(char *string)
+{
+	int idx;
+
+	idx = 0;
+	while (string[idx])
+	{
+		if (string[idx] != '0')
+			return (1);
+		idx++;
+	}
+	return (0);
+}
+
 static int	not_numerical(char *string)
 {
-	if (ft_strlen(string) > 10)
+	if (ft_strlen(string) > 10 && not_only_zeros(string))
 		return (1);
 	if (ft_atoi(string) == 0)
 	{
