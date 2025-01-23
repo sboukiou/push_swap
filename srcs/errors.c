@@ -6,41 +6,40 @@ static void	quit(void)
 	exit(0);
 }
 
-static void	error_duplicate(t_stack *stack, int value)
+static int not_only_zeros(char *string)
 {
-	t_node	*temp;
-	int		count;
+	int idx;
 
-	if (!stack || !stack->top)
-		return ;
-	count = 0;
-	temp = stack->top;
-	while (temp)
+	idx = 0;
+	while (string[idx])
 	{
-		if (temp->value == value)
-			count++;
-		temp = temp->next;
+		if (string[idx] != '0')
+			return (1);
+		idx++;
 	}
-	if (count > 1)
-	{
-		stack_free(stack);
-		quit();
-	}
+	return (0);
 }
 
-void	error_stack_dup(t_stack *stack)
+static int	not_numerical(char *string)
 {
-	t_node	*temp;
-	if (!stack || !stack->top)
-		return ;
-	temp = stack->top;
-	while (temp)
+	if (ft_strlen(string) > 10 && not_only_zeros(string))
+		return (1);
+	if (ft_atoi(string) == 0)
 	{
-		error_duplicate(stack, temp->value);
-		temp = temp->next;
+		if (ft_strlen(string) > 2)
+			return (1);
+		if (ft_strcmp(string, "0") && ft_strcmp(string, "-0") && ft_strcmp(string, "-0"))
+			return (1);
 	}
-	return ;
+	if (ft_atoi(string) == -1 && ft_strcmp(string, "-1"))
+		return (1);
+	return (0);
 }
+
+/*static int	deja_vue(char **args, char *string)*/
+/*{*/
+/*	int		idx;*/
+/*}*/
 
 static int	error_notnumber(char *str)
 {
