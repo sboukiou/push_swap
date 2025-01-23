@@ -32,6 +32,9 @@ void	sort_size_three(t_stack *stack_a)
 	t_node	*temp;
 
 	temp = stack_a->top;
+
+	if (temp->value < temp->next->value && temp->value < stack_a->bottom->value)
+		return (printf("rra\n"), printf("sa\n"), rrab(stack_a), sab(stack_a));
 	if (temp->value > temp->next->value && temp->value < stack_a->bottom->value)
 		return (printf("sa\n"), sab(stack_a));
 	if (temp->value < temp->next->value && temp->value > stack_a->bottom->value)
