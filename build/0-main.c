@@ -19,24 +19,7 @@ int main(int ac, char **av)
 
 	stack_b->top = NULL;
 	stack_b->bottom = NULL;
-	/*----------------------------------------------------*/
-	/*printf("Stack initialized\n-------------\n");*/
-	/*stack_print(stack_a);*/
-	/*----------------------------------------------------*/
-
-	/* rra works fine so far */
-	/*----------------------------------------------------*/
-	/*printf("aplying rra ...\n-------------\n");*/
-	/*stack_print(stack_a);*/
 	sorter(stack_a, stack_b);
-
-	/*----------------------------------------------------*/
-
-	/*----------------------------------------------------*/
-	/*printf("Stack sorted\n-------------\n");*/
-	/*stack_print(stack_a);*/
-
-	/*----------------------------------------------------*/
 	stack_free(stack_a);
 	stack_free(stack_b);
 	return (0);
