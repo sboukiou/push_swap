@@ -2,5 +2,4 @@
 #define ERROR_H
 #include "./common.h"
 void	error_check(char **av);
-void	error_stack_dup(t_stack *stack);
 #endif
