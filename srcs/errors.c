@@ -36,43 +36,70 @@ static int	not_numerical(char *string)
 	return (0);
 }
 
-/*static int	deja_vue(char **args, char *string)*/
-/*{*/
-/*	int		idx;*/
-/*}*/
-
-static int	error_notnumber(char *str)
+static int	deja_vue(char **args, char *string)
 {
-	int	num;
+	int		idx;
+	int		count;
 
-	if (!str)
-		return -1;
-	num = ft_atoi(str);
-	if (num == 0)
+	if (!args || !string)
+		return (1);
+	idx = 0;
+	count = 0;
+	while (args[idx])
 	{
-		if (ft_strcmp(str,"0") && ft_strcmp(str,"-0") && ft_strcmp(str,"-0"))
-			return (-1);
+		if (ft_strcmp(args[idx], string) == 0)
+			count++;
+		idx++;
 	}
-	if (num == -1 && ft_strcmp(str, "-1"))
-			return (-1);
+	if (count > 1)
+		return (1);
 	return (0);
+}
+
+static char	**join_args(char **av)
+{
+	int	idx;
+	char	*buffer;
+	char	**args;
+	char	*temp;
+
+	idx = 1;
+	buffer = ft_strjoin("", " ");
+	while (av[idx])
+	{
+		temp = buffer;
+		buffer = ft_strjoin(buffer, av[idx]);
+		free(temp);
+		temp = buffer;
+		buffer = ft_strjoin(buffer, " ");
+		free(temp);
+		if (!buffer)
+			quit();
+		idx++;
+	}
+	args = ft_split(buffer, ' ');
+	free(buffer);
+	return (args);
 }
 
 void	error_check(char **av)
 {
+	char	**args;
 	int	idx;
-	int	jdx;
-	char **list;
 
+	args = join_args(av);
+	if (!args)
+		quit();
 	idx = 1;
-	while (av[idx])
+	while (args[idx])
 	{
-		list = ft_split(av[idx], ' ');
-		jdx = 0;
-		while (list[jdx])
-			error_notnumber(list[jdx++]);
-		ft_double_free(list);
+		if (deja_vue(args, args[idx]) || not_numerical(args[idx]))
+		{
+			ft_double_free(args);
+			quit();
+		}
 		idx++;
 	}
+	ft_double_free(args);
 }
 
