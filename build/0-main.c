@@ -12,7 +12,7 @@ int main(int ac, char **av)
 	stack_a = tokenize_input(av);
 	if (is_sorted(stack_a))
 		return (stack_free(stack_a), 0);
-	error_stack_dup(stack_a);
+	error_check(av);
 	stack_b = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack_a || !stack_b)
 		printf("Nothing returned from tokenizer, Leaving ...\n"), exit(0);
