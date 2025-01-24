@@ -92,24 +92,7 @@ void	sorter(t_stack *stack_a, t_stack *stack_b)
 	temp = ref->top;
 	while (temp)
 	{
-		if (stack_index_of(stack_a, temp->value) > stack_size(stack_a) / 2)
-		{
-			while (stack_a->top->value != temp->value)
-			{
-				printf("rra\n");
-				rrab(stack_a);
-			}
-		}
-		else
-		{
-			while (stack_a->top->value != temp->value)
-			{
-				printf("ra\n");
-				rab(stack_a);
-			}
-		}
-		printf("pb\n");
-		pab(stack_a, stack_b);
+		find_and_push(stack_a, stack_b, temp->value);
 		temp = temp->next;
 	}
 
