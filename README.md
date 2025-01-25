@@ -1,2 +1,2 @@
 # push_swap
-Soring a stack with minimum movements.
+## Because Swap_push isn’t as natural
