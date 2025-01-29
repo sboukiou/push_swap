@@ -57,6 +57,25 @@ void	sort_size_three(t_stack *stack_a)
 	}
 }
 
+void	sort_size_four_five(t_stack *stack_a, t_stack *stack_b)
+{
+	t_stack	*ref;
+
+	ref = stack_duplicate(stack_a);
+	if (!ref)
+		return ;
+	stack_sort(ref);
+
+	find_and_push(stack_a, stack_b, ref->top->value);
+	if (stack_size(stack_a) == 4)
+		find_and_push(stack_a, stack_b, ref->top->next->value);
+	sort_size_three(stack_a);
+	pab(stack_b, stack_a);
+	pab(stack_b, stack_a);
+	printf("pa\n");
+	printf("pa\n");
+}
+
 void	sorter(t_stack *stack_a, t_stack *stack_b)
 {
 	(void)stack_a;
@@ -66,31 +85,14 @@ void	sorter(t_stack *stack_a, t_stack *stack_b)
 
 	if (stack_size(stack_a) == 3)
 		return (sort_size_three(stack_a));
+	if (stack_size(stack_a) == 4 || stack_size(stack_a) == 5)
+		return (sort_size_four_five(stack_a, stack_b));
 	ref = stack_duplicate(stack_a);
-	if (!ref)
-		return ;
 	stack_sort(ref);
 	temp = ref->top;
 	while (temp)
 	{
-		if (stack_index_of(stack_a, temp->value) > stack_size(stack_a) / 2)
-		{
-			while (stack_a->top->value != temp->value)
-			{
-				printf("rra\n");
-				rrab(stack_a);
-			}
-		}
-		else
-		{
-			while (stack_a->top->value != temp->value)
-			{
-				printf("ra\n");
-				rab(stack_a);
-			}
-		}
-		printf("pb\n");
-		pab(stack_a, stack_b);
+		find_and_push(stack_a, stack_b, temp->value);
 		temp = temp->next;
 	}
 

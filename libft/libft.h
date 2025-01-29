@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 /*Includes - unistd + stdlib for malloc , read & write*/
-#include "./common.h"
+#include <stddef.h>
 
 /*Structures*/
 typedef struct s_list

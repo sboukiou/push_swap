@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "./libft.h"
+#include <limits.h>
 
 /**
 	* is_delim - Checks if a char is a delimiter or not
@@ -32,11 +33,11 @@ static int	is_delim(char c)
 	* @nptr: Alphanum string to convert
 	* Return: An int depending on the nptr
 */
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
 	int				count;
 	int				sign;
-	unsigned int	num;
+	long			num;
 
 	count = 0;
 	while (is_delim(nptr[count]) && nptr[count])
@@ -52,9 +53,13 @@ int	ft_atoi(const char *nptr)
 	num = 0;
 	while (ft_isdigit(nptr[count]) && nptr[count])
 	{
+		if ((num * 10) > INT_MAX)
+			return (-1);
 		num *= 10;
 		num += nptr[count] - '0';
 		count++;
 	}
+	if (nptr[count])
+		return (-1);
 	return (num * sign);
 }

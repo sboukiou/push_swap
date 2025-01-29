@@ -19,25 +19,10 @@
 #include "./libft.h"
 #include "./error.h"
 #include "./lists.h"
+#include "./stack_mvmnts.h"
 
 
-/*Stack dsa functions*/
-void	stack_free(t_stack *stack_data);
-void	stack_print(t_stack *stack_data);
-t_stack	*stack_last(t_stack *stack_data);
-void	stack_sort(t_stack *stack_data);
-void	stack_swap(t_node *node_a, t_node *node_b);
-t_stack	*stack_duplicate(t_stack *stack);
-void	stack_remove(t_stack *stack, t_node *node);
-int	stack_index_of(t_stack *stack, int value);
-int	stack_size(t_stack *stack);
-int	is_sorted(t_stack *stack);
 
-/*Stack movements*/
-void	rab(t_stack *stack);
-void	sab(t_stack *stack);
-void	rrab(t_stack *stack);
-void	pab(t_stack *a, t_stack *b);
 /*prototypes for src*/
 t_stack	*tokenize_input(char **input);
 void	sorter(t_stack *stack_a, t_stack *stack_b);
