@@ -64,10 +64,10 @@ void	stack_print(t_stack *stack)
 	if (!stack)
 		return  ;
 	temp = stack->top;
-	printf("stack -----------\n");
+	printf("\nstack -----------\n");
 	while (temp)
 	{
-		printf("| %d |\n", temp->value);
+		printf(" %d ->", temp->value);
 		temp = temp->next;
 	}
 	printf("\n");
@@ -204,4 +204,36 @@ int	stack_checkdup(t_stack *stack, int value)
 		temp = temp->next;
 	}
 	return (count);
+}
+
+t_node	*stack_find_prev(t_stack *stack, int value)
+{
+	t_node	*temp;
+	if (!stack)
+		return (NULL);
+	temp = stack->top;
+	while (temp)
+	{
+		if (temp->value < value)
+			return (temp);
+		temp = temp->next;
+	}
+	return (NULL);
+}
+t_node	*stack_smallest(t_stack *stack)
+{
+	t_node	*temp;
+	t_node	*placeholder;
+
+	if (!stack)
+		return (NULL);
+	temp = stack->top;
+	placeholder = stack->top;
+	while (temp)
+	{
+		if (temp->value < placeholder->value)
+			placeholder = temp;
+		temp = temp->next;
+	}
+	return (placeholder);
 }
