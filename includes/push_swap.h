@@ -25,5 +25,6 @@
 
 /*prototypes for src*/
 t_stack	*tokenize_input(char **input);
+t_stack	*stack_init(char **args);
 void	sorter(t_stack *stack_a, t_stack *stack_b);
 #endif
