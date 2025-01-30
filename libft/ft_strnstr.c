@@ -6,11 +6,11 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 01:21:04 by sboukiou          #+#    #+#             */
-/*   Updated: 2024/11/06 16:59:36 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:51:50 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 #include <string.h>
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)

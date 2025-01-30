@@ -6,11 +6,11 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 00:58:31 by sboukiou          #+#    #+#             */
-/*   Updated: 2024/10/25 01:05:00 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:51:49 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 char	*ft_strdup(const char *str)
 {

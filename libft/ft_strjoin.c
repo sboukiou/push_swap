@@ -6,11 +6,11 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 15:38:15 by sboukiou          #+#    #+#             */
-/*   Updated: 2024/10/26 15:52:21 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:51:49 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
