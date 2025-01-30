@@ -44,9 +44,9 @@ int main(int ac, char **av)
 
 	for (int i = 0; i<= size; i++)
 	{
-		value = rand();
+		value = rand() % 300;
 		while (deja_vue(chunks, value, size) == 0)
-			value = rand();
+			value = rand() % 300;
 		chunks[i] = value;
 	}
 	for (int i = 0; i < size; i++)

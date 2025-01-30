@@ -17,4 +17,6 @@ void	stack_remove(t_stack *stack, t_node *node);
 int	stack_index_of(t_stack *stack, int value);
 int	stack_size(t_stack *stack);
 int	is_sorted(t_stack *stack);
+t_node	*stack_find_prev(t_stack *stack, int value);
+t_node	*stack_smallest(t_stack *stack);
 #endif

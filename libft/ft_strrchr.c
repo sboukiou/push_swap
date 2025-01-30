@@ -6,11 +6,11 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 18:03:28 by sboukiou          #+#    #+#             */
-/*   Updated: 2024/10/23 18:06:15 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:51:50 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 /**
 	* ft_strrchr - returns a pointer to the last occurrence of the character
