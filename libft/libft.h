@@ -16,14 +16,9 @@
 /*Includes - unistd + stdlib for malloc , read & write*/
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 /*Structures*/
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
 /*Functions prototypes*/
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
