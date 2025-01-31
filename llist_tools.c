@@ -64,3 +64,20 @@ int	stack_size(t_stack *stack)
 	}
 	return (size);
 }
+
+void	stack_free(t_stack *stack)
+{
+	t_node	*temp;
+	t_node	*to_free;
+
+	if (!stack)
+		return ;
+	temp = stack->top;
+	while (temp)
+	{
+		to_free = temp;
+		temp = temp->next;
+		free(to_free);
+	}
+	free(stack);
+}
