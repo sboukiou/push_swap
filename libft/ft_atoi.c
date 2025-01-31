@@ -34,9 +34,9 @@ static int	is_delim(char c)
 */
 int	ft_atoi(const char *nptr)
 {
-	int				count;
-	int				sign;
-	unsigned int	num;
+	int		count;
+	int		sign;
+	long	num;
 
 	count = 0;
 	while (is_delim(nptr[count]) && nptr[count])
@@ -53,6 +53,8 @@ int	ft_atoi(const char *nptr)
 	while (ft_isdigit(nptr[count]) && nptr[count])
 	{
 		num *= 10;
+		if (num > INT_MAX)
+			return (-1);
 		num += nptr[count] - '0';
 		count++;
 	}
