@@ -1,6 +1,4 @@
 #include "./push_swap.h"
-#include <unistd.h>
-#include <stdlib.h>
 
 
 void	pab(t_stack *stack_a, t_stack *stack_b, char *str)
