@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 18:24:19 by sboukiou          #+#    #+#             */
-/*   Updated: 2024/10/23 18:38:29 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:24:39 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,17 @@ static int	is_delim(char c)
 	return (0);
 }
 
-/**
-	* ft_atoi - Converts a valid alphanumerical string into an integer literal
-	* @nptr: Alphanum string to convert
-	* Return: An int depending on the nptr
-*/
+static void	check_sign(char c, int *count, int *sign)
+{
+	if (c == '-')
+	{
+		*sign = -1;
+		(*count)++;
+	}
+	else if (c == '+')
+		(*count)++;
+}
+
 long	ft_atoi(const char *nptr)
 {
 	int				count;
@@ -43,20 +49,13 @@ long	ft_atoi(const char *nptr)
 	while (is_delim(nptr[count]) && nptr[count])
 		count++;
 	sign = 1;
-	if (nptr[count] == '-')
-	{
-		sign = -1;
-		count++;
-	}
-	else if (nptr[count] == '+')
-		count++;
+	check_sign(nptr[count], &count, &sign);
 	num = 0;
 	while (ft_isdigit(nptr[count]) && nptr[count])
 	{
 		if ((num * 10) > INT_MAX)
 			return (-1);
-		num *= 10;
-		num += nptr[count] - '0';
+		num = num * 10 + nptr[count] - '0';
 		count++;
 	}
 	if (nptr[count])
