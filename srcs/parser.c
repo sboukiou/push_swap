@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/30 11:26:14 by sboukiou          #+#    #+#             */
+/*   Updated: 2025/01/30 11:37:02 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 static void	quit(void)
@@ -26,12 +38,30 @@ static int	deja_vue(t_stack *stack, int value)
 	return (0);
 }
 
+void	fetch_and_push(t_stack *stack_a, char **list)
+{
+	int	jdx;
+	int	temp;
+
+	jdx = 0;
+	while (list[jdx])
+	{
+		temp = ft_atoi(list[jdx]);
+		if ((temp == -1 && ft_strcmp(list[jdx], "-1"))
+			|| deja_vue(stack_a, temp))
+		{
+			ft_double_free(list);
+			stack_free(stack_a);
+			quit();
+		}
+		stack_push_back(stack_a, stack_create_node(temp));
+		jdx++;
+	}
+}
 
 t_stack	*stack_init(char **args)
 {
 	int		idx;
-	int		jdx;
-	int		temp;
 	char	**list;
 	t_stack	*stack_a;
 
@@ -45,20 +75,11 @@ t_stack	*stack_init(char **args)
 	{
 		list = ft_split(args[idx], ' ');
 		if (!list)
-			stack_free(stack_a), quit();
-		jdx = 0;
-		while (list[jdx])
 		{
-			temp = ft_atoi(list[jdx]);
-			if ((temp == -1 && ft_strcmp(list[jdx], "-1")) || deja_vue(stack_a, temp))
-			{
-				ft_double_free(list);
-				stack_free(stack_a);
-				quit();
-			}
-			stack_push_back(stack_a, stack_create_node(temp));
-				jdx++;
+			stack_free(stack_a);
+			quit();
 		}
+		fetch_and_push(stack_a, list);
 		idx++;
 	}
 	return (stack_a);
