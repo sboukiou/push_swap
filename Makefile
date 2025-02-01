@@ -8,8 +8,12 @@ SHARED_SRCS=actions.c llist_tools.c parser.c
 
 MANDATORY=main.c
 
-CC=cc
+CC=cc -Wall -Werror -Wextra -o
 
 $(NAME): ./*.c
-	$(CC) -o $(NAME) $(SHARED_SRCS) $(LIBFT_SRCS) $(MANDATORY)
+	$(CC) $(NAME) $(SHARED_SRCS) $(LIBFT_SRCS) $(MANDATORY)
+
 all: $(NAME)
+
+clean:
+	$(RM) $(NAME)
