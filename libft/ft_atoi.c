@@ -58,5 +58,7 @@ int	ft_atoi(const char *nptr)
 		num += nptr[count] - '0';
 		count++;
 	}
+	if (nptr[count])
+		return (-1);
 	return (num * sign);
 }

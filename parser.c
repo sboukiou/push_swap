@@ -52,7 +52,7 @@ t_stack	*parser(char **av)
 		while (list[jdx])
 		{
 			temp =  ft_atoi(list[jdx]);
-			if ((temp == -1 && ft_strncmp(list[jdx], "-1", 2)) || deja_vue(stack, temp))
+			if ((temp == -1 && ft_memcmp(list[jdx], "-1", 2)) || deja_vue(stack, temp))
 				quit(stack, list);
 			stack_push_back(stack, new_node(temp));
 			jdx++;

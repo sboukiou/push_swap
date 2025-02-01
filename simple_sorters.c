@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 20:48:36 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/01 21:05:58 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/01 21:52:18 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	sort_size_four_five(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*ref;
 
 	ref = stack_duplicate(stack_a);
+	write(STDOUT_FILENO, "here\n", 5);
 	if (!ref)
 		return ;
 	stack_sort(ref);

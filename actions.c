@@ -20,7 +20,12 @@ void	sab(t_stack *stack, char *str)
 
 	if (str)
 		write(STDOUT_FILENO, str, ft_strlen(str));
+	if (!stack)
+		return ;
 	temp = stack->top;
+	if (!temp || temp->next)
+		return ;
+	if (temp->next)
 	stack->top = temp->next;
 	stack->top->next = temp;
 }

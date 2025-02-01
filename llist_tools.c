@@ -57,6 +57,7 @@ int	stack_size(t_stack *stack)
 	size = 0;
 	if (!stack || !stack->top)
 		return (size);
+	temp = stack->top;
 	while (temp)
 	{
 		size++;
