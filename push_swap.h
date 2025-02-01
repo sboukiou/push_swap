@@ -31,13 +31,23 @@ int	stack_size(t_stack *stack);
 void	stack_free(t_stack *stack);
 int	stack_issorted(t_stack *stack);
 void	stack_remove(t_stack *stack, t_node *node);
+int	stack_index_of(t_stack *stack, int value);
+void	stack_swap(t_node *node_a, t_node *node_b);
+void	stack_sort(t_stack *stack);
+t_stack	*stack_duplicate(t_stack *stack);
 
 /* Stack Actions */
+void	pab(t_stack *stack_a, t_stack *stack_b, char *str);
 void	sab(t_stack *stack, char *str);
 void	rab(t_stack *stack, char *str);
 void	rrab(t_stack *stack, char *str);
+void	find_and_push_a(t_stack *stack_a, t_stack *stack_b, int value);
+void	find_and_push_b(t_stack *stack_a, t_stack *stack_b, int value);
 
 /*Parser function | defined at --> ./parser.c */
 t_stack	*parser(char **av);
+void	sort_size_four_five(t_stack *stack_a, t_stack *stack_b);
+void	sort_size_three(t_stack *stack_a);
+void	sorter(t_stack *stack_a, t_stack *stack_b);
 
 #endif

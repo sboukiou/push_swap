@@ -11,6 +11,7 @@ int main(int ac, char **av)
 	stack_a = parser(av);
 	if (!stack_a || !stack_b)
 		return (0);
-	t_node	*temp = stack_a->top;
-	/*sorter(stack_a, stack_b);*/
+	sorter(stack_a, stack_b);
+	stack_free(stack_a);
+	stack_free(stack_b);
 }

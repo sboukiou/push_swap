@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 20:48:36 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/01 20:50:21 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/01 21:05:58 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,21 @@ void	sort_size_three(t_stack *stack_a)
 			return (rrab(stack_a, "rra\n"));
 		}
 	}
+}
+
+void	sort_size_four_five(t_stack *stack_a, t_stack *stack_b)
+{
+	t_stack	*ref;
+
+	ref = stack_duplicate(stack_a);
+	if (!ref)
+		return ;
+	stack_sort(ref);
+
+	find_and_push_a(stack_a, stack_b, ref->top->value);
+	if (stack_size(stack_a) == 4)
+		find_and_push_a(stack_a, stack_b, ref->top->next->value);
+	sort_size_three(stack_a);
+	pab(stack_b, stack_a, "pa\n");
+	pab(stack_b, stack_a, "pa\n");
 }
