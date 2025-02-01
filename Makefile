@@ -8,6 +8,9 @@ SHARED_SRCS=actions.c llist_tools.c parser.c llist_tools_more.c  simple_sorters.
 
 MANDATORY=main.c
 
+GEN=gen
+GEN_SOURCE=./generator.c
+
 CC=cc -Wall -Werror -Wextra -o
 
 $(NAME): ./*.c
@@ -15,5 +18,8 @@ $(NAME): ./*.c
 
 all: $(NAME)
 
+gen:
+	$(CC) $(GEN) $(GEN_SOURCE)
+
 clean:
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(GEN)
