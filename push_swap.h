@@ -29,7 +29,13 @@ void	stack_push_back(t_stack *stack, t_node *node);
 void	stack_push_front(t_stack *stack, t_node *node);
 int	stack_size(t_stack *stack);
 void	stack_free(t_stack *stack);
+int	stack_issorted(t_stack *stack);
+void	stack_remove(t_stack *stack, t_node *node);
 
+/* Stack Actions */
+void	sab(t_stack *stack, char *str);
+void	rab(t_stack *stack, char *str);
+void	rrab(t_stack *stack, char *str);
 
 /*Parser function | defined at --> ./parser.c */
 t_stack	*parser(char **av);
