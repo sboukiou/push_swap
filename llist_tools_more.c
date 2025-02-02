@@ -31,15 +31,14 @@ int	stack_issorted(t_stack *stack)
 void	stack_remove(t_stack *stack, t_node *node)
 {
 	t_node	*temp;
-	t_node	*to_remove;
-
 	if (!stack || !node || !stack->top)
 		return ;
 	if (stack->top == node)
 	{
+		stack->top = node->next;
 		if (stack->bottom == node)
 			stack->bottom = NULL;
-		stack->top = node->next;
+		node->next = NULL;
 		return ;
 	}
 	temp = stack->top;
@@ -48,9 +47,13 @@ void	stack_remove(t_stack *stack, t_node *node)
 		if (temp->next == node)
 		{
 			if (stack->bottom == node)
+			{
 				stack->bottom = temp;
-			to_remove = temp->next;
-			temp->next = to_remove->next;
+				temp->next = NULL;
+			}
+			if (node->next)
+				temp->next = node->next;
+			node->next = NULL;
 			return ;
 		}
 		temp = temp->next;
