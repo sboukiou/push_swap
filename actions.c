@@ -16,18 +16,10 @@ void	pab(t_stack *stack_a, t_stack *stack_b, char *str)
 
 void	sab(t_stack *stack, char *str)
 {
-	t_node	*temp;
-
 	if (str)
 		write(STDOUT_FILENO, str, ft_strlen(str));
-	if (!stack)
-		return ;
-	temp = stack->top;
-	if (!temp || temp->next)
-		return ;
-	if (temp->next)
-	stack->top = temp->next;
-	stack->top->next = temp;
+	if (stack->top && stack->top->next)
+		stack_swap(stack->top, stack->top->next);
 }
 
 void	rab(t_stack *stack, char *str)
