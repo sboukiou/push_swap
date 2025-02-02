@@ -45,7 +45,6 @@ void	sort_size_four_five(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*ref;
 
 	ref = stack_duplicate(stack_a);
-	write(STDOUT_FILENO, "here\n", 5);
 	if (!ref)
 		return ;
 	stack_sort(ref);
