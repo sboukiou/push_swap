@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 20:48:36 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/01 21:52:18 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/02 11:28:10 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	sort_size_three(t_stack *stack_a)
 	t_node	*temp;
 
 	temp = stack_a->top;
-
 	if (temp->value < temp->next->value && temp->value < stack_a->bottom->value)
 		return (rrab(stack_a, "rra\n"), sab(stack_a, "sa\n"));
 	if (temp->value > temp->next->value && temp->value < stack_a->bottom->value)
@@ -48,7 +47,6 @@ void	sort_size_four_five(t_stack *stack_a, t_stack *stack_b)
 	if (!ref)
 		return ;
 	stack_sort(ref);
-
 	find_and_push_a(stack_a, stack_b, ref->top->value);
 	if (stack_size(stack_a) == 4)
 		find_and_push_a(stack_a, stack_b, ref->top->next->value);

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   llist_tools.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/02 11:16:23 by sboukiou          #+#    #+#             */
+/*   Updated: 2025/02/02 11:17:24 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./push_swap.h"
 
 t_node	*new_node(int value)
 {
-	t_node *new;
+	t_node	*new;
 
 	new = (t_node *)malloc(sizeof(t_node));
 	if (!new)
@@ -67,21 +79,4 @@ int	stack_size(t_stack *stack)
 		temp = temp->next;
 	}
 	return (size);
-}
-
-void	stack_free(t_stack *stack)
-{
-	t_node	*temp;
-	t_node	*to_free;
-
-	if (!stack)
-		return ;
-	temp = stack->top;
-	while (temp)
-	{
-		to_free = temp;
-		temp = temp->next;
-		free(to_free);
-	}
-	free(stack);
 }

@@ -6,13 +6,13 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 10:19:08 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/02 11:09:15 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/02 11:27:51 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
 
-void expand_range(int *start, int *end, int size)
+void	expand_range(int *start, int *end, int size)
 {
 	if (*end < size)
 		(*end)++;
@@ -20,10 +20,9 @@ void expand_range(int *start, int *end, int size)
 		(*start)++;
 }
 
-
 void	array_sort(int *arr, int size)
 {
-	int i;
+	int	i;
 	int	j;
 	int	temp;
 
@@ -81,4 +80,3 @@ int	includes(int *ref, int value, int range)
 	}
 	return (0);
 }
-

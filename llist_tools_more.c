@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 20:29:10 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/01 21:53:06 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/02 11:37:27 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	stack_issorted(t_stack *stack)
 {
-	t_node *temp;
+	t_node	*temp;
 
 	if (!stack || !stack->top)
 		return (0);
@@ -23,24 +23,28 @@ int	stack_issorted(t_stack *stack)
 	{
 		if (temp->next && temp->next->value < temp->value)
 			return (0);
-		temp =  temp->next;
+		temp = temp->next;
 	}
 	return (1);
+}
+
+static void	remove_at_top(t_stack *stack, t_node *node)
+{
+	stack->top = node->next;
+	if (stack->bottom == node)
+		stack->bottom = NULL;
+	node->next = NULL;
+	return ;
 }
 
 void	stack_remove(t_stack *stack, t_node *node)
 {
 	t_node	*temp;
+
 	if (!stack || !node || !stack->top)
 		return ;
 	if (stack->top == node)
-	{
-		stack->top = node->next;
-		if (stack->bottom == node)
-			stack->bottom = NULL;
-		node->next = NULL;
-		return ;
-	}
+		return (remove_at_top(stack, node));
 	temp = stack->top;
 	while (temp)
 	{
@@ -63,7 +67,7 @@ void	stack_remove(t_stack *stack, t_node *node)
 int	stack_index_of(t_stack *stack, int value)
 {
 	t_node	*temp;
-	int	index;
+	int		index;
 
 	index = 0;
 	temp = stack->top;
@@ -79,17 +83,16 @@ int	stack_index_of(t_stack *stack, int value)
 
 t_stack	*stack_duplicate(t_stack *stack)
 {
-	t_stack	*new_stack;
+	t_stack			*new_stack;
 	t_node			*temp;
 	t_node			*copy;
-
 
 	if (!stack)
 		return (NULL);
 	new_stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_stack)
 		return (NULL);
-	temp =  stack->top;
+	temp = stack->top;
 	new_stack->top = NULL;
 	new_stack->bottom = NULL;
 	while (temp)
@@ -101,35 +104,4 @@ t_stack	*stack_duplicate(t_stack *stack)
 		temp = temp->next;
 	}
 	return (new_stack);
-}
-
-void	stack_swap(t_node *node_a, t_node *node_b)
-{
-	int	temp;
-
-	temp = node_a->value;
-	node_a->value = node_b->value;
-	node_b->value = temp;
-}
-
-void	stack_sort(t_stack *stack)
-{
-	/*bubble sort implementation*/
-	/*Insertion sort removed*/
-	t_node	*temp;
-	t_node	*node;
-	if (!stack || !stack->top)
-		return ;
-	temp = stack->top;
-	while (temp)
-	{
-		node = stack->top;
-		while (node->next)
-		{
-			if (node->value > node->next->value)
-				stack_swap(node, node->next);
-			node = node->next;
-		}
-		temp = temp->next;
-	}
 }

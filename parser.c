@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/02 11:24:18 by sboukiou          #+#    #+#             */
+/*   Updated: 2025/02/02 11:24:43 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./push_swap.h"
 
 static void	list_free(char **list)
 {
-	int idx;
+	int	idx;
 
 	idx = 0;
 	while (list[idx])
@@ -51,8 +63,9 @@ t_stack	*parser(char **av)
 		jdx = 0;
 		while (list[jdx])
 		{
-			temp =  ft_atoi(list[jdx]);
-			if ((temp == -1 && ft_memcmp(list[jdx], "-1", 2)) || deja_vue(stack, temp))
+			temp = ft_atoi(list[jdx]);
+			if ((temp == -1 && ft_memcmp(list[jdx], "-1", 2))
+				|| deja_vue(stack, temp))
 				quit(stack, list);
 			stack_push_back(stack, new_node(temp));
 			jdx++;

@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 18:24:19 by sboukiou          #+#    #+#             */
-/*   Updated: 2024/10/23 18:38:29 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/02 11:16:10 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ static int	is_delim(char c)
 	if (c == '\t' || c == '\v' || c == '\n')
 		return (1);
 	return (0);
+}
+
+int	valid_number(char digit, long num, int sign)
+{
+	if (digit)
+		return (-1);
+	return (num * sign);
 }
 
 /**
@@ -52,13 +59,10 @@ int	ft_atoi(const char *nptr)
 	num = 0;
 	while (ft_isdigit(nptr[count]) && nptr[count])
 	{
-		num *= 10;
+		num = (num * 10) + nptr[count] - '0';
 		if (num > INT_MAX)
 			return (-1);
-		num += nptr[count] - '0';
 		count++;
 	}
-	if (nptr[count])
-		return (-1);
-	return (num * sign);
+	return (valid_number(nptr[count], num, sign));
 }

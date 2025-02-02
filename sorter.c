@@ -6,13 +6,13 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 11:08:46 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/02 11:09:12 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/02 11:31:08 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
 
-static int *init_algo(t_stack *stack_a, t_stack *stack_b)
+static int	*init_algo(t_stack *stack_a, t_stack *stack_b)
 {
 	int	*ref;
 
@@ -28,19 +28,22 @@ static int *init_algo(t_stack *stack_a, t_stack *stack_b)
 	return (ref);
 }
 
-static void	found_start(t_stack *stack_a, t_stack *stack_b, int *start, int *end, int size)
+static void	found_start(t_stack *stack_a,
+						t_stack *stack_b, int *start, int *end)
 {
-			pab(stack_a, stack_b, "pb\n");
-			rab(stack_b, "rb\n");
-			expand_range(start, end, size);
+	pab(stack_a, stack_b, "pb\n");
+	rab(stack_b, "rb\n");
+	(*end)++;
+	(*start)++;
 }
 
-static void	found_end(t_stack *stack_a, t_stack *stack_b, int *start, int *end, int size)
+static void	found_end(t_stack *stack_a, t_stack *stack_b, int *start, int *end)
 {
-			pab(stack_a, stack_b, "pb\n");
-			if (stack_b->top->next && stack_b->top->next->value > stack_b->top->value)
-				sab(stack_b, "sb\n");
-			expand_range(start, end, size);
+	pab(stack_a, stack_b, "pb\n");
+	if (stack_b->top->next && stack_b->top->next->value > stack_b->top->value)
+		sab(stack_b, "sb\n");
+	(*end)++;
+	(*start)++;
 }
 
 void	sorter(t_stack *stack_a, t_stack *stack_b)
@@ -50,7 +53,8 @@ void	sorter(t_stack *stack_a, t_stack *stack_b)
 	int	end;
 	int	size;
 
-	if ((ref = init_algo(stack_a, stack_b)) == NULL)
+	ref = init_algo(stack_a, stack_b);
+	if (ref == NULL)
 		return ;
 	size = stack_size(stack_a);
 	start = 0;
@@ -60,9 +64,9 @@ void	sorter(t_stack *stack_a, t_stack *stack_b)
 	while (stack_a->top)
 	{
 		if (includes(ref, stack_a->top->value, start))
-			found_start(stack_a, stack_b, &start, &end, size);
+			found_start(stack_a, stack_b, &start, &end);
 		else if (includes(ref, stack_a->top->value, end))
-			found_end(stack_a, stack_b, &start, &end, size);
+			found_end(stack_a, stack_b, &start, &end);
 		else
 			rab(stack_a, "ra\n");
 	}
