@@ -1,14 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorter.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/02 11:08:46 by sboukiou          #+#    #+#             */
+/*   Updated: 2025/02/02 11:09:12 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./push_swap.h"
+
+static int *init_algo(t_stack *stack_a, t_stack *stack_b)
+{
+	int	*ref;
+
+	if (stack_issorted(stack_a))
+		return (NULL);
+	if (stack_size(stack_a) == 2)
+		return (sab(stack_a, "sa\n"), NULL);
+	if (stack_size(stack_a) == 3)
+		return (sort_size_three(stack_a), NULL);
+	if (stack_size(stack_a) == 4 || stack_size(stack_a) == 5)
+		return (sort_size_four_five(stack_a, stack_b), NULL);
+	ref = create_ref_array(stack_a);
+	return (ref);
+}
+
+static void	found_start(t_stack *stack_a, t_stack *stack_b, int *start, int *end, int size)
+{
+			pab(stack_a, stack_b, "pb\n");
+			rab(stack_b, "rb\n");
+			expand_range(start, end, size);
+}
+
+static void	found_end(t_stack *stack_a, t_stack *stack_b, int *start, int *end, int size)
+{
+			pab(stack_a, stack_b, "pb\n");
+			if (stack_b->top->next && stack_b->top->next->value > stack_b->top->value)
+				sab(stack_b, "sb\n");
+			expand_range(start, end, size);
+}
 
 void	sorter(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_issorted(stack_a))
+	int	*ref;
+	int	start;
+	int	end;
+	int	size;
+
+	if ((ref = init_algo(stack_a, stack_b)) == NULL)
 		return ;
-	if (stack_size(stack_a) == 2)
-		return (sab(stack_a, "sa\n"));
-	if (stack_size(stack_a) == 3)
-		return (sort_size_three(stack_a));
-	if (stack_size(stack_a) == 4 || stack_size(stack_a) == 5)
-		return (sort_size_four_five(stack_a, stack_b));
-	write(STDOUT_FILENO, "Size is above 5\n", 17);
+	size = stack_size(stack_a);
+	start = 0;
+	end = size / 6;
+	if (size > 100)
+		end = 14;
+	while (stack_a->top)
+	{
+		if (includes(ref, stack_a->top->value, start))
+			found_start(stack_a, stack_b, &start, &end, size);
+		else if (includes(ref, stack_a->top->value, end))
+			found_end(stack_a, stack_b, &start, &end, size);
+		else
+			rab(stack_a, "ra\n");
+	}
+	while (stack_b->top)
+		find_and_push_b(stack_a, stack_b, ref[--size]);
 }

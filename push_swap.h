@@ -52,4 +52,10 @@ void	sort_size_four_five(t_stack *stack_a, t_stack *stack_b);
 void	sort_size_three(t_stack *stack_a);
 void	sorter(t_stack *stack_a, t_stack *stack_b);
 
+/*Array ref utils*/
+int	includes(int *ref, int value, int range);
+int	*create_ref_array(t_stack *stack);
+void	array_sort(int *arr, int size);
+void expand_range(int *start, int *end, int size);
+
 #endif
