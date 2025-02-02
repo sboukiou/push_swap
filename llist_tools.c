@@ -29,10 +29,13 @@ void	stack_push_back(t_stack *stack, t_node *node)
 	if (!stack)
 		return ;
 	if (stack->bottom)
+	{
 		stack->bottom->next = node;
+		stack->bottom = node;
+		return ;
+	}
+	stack->top = node;
 	stack->bottom = node;
-	if (!stack->top)
-		stack->top = node;
 }
 
 void	stack_push_front(t_stack *stack, t_node *node)
