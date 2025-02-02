@@ -4,6 +4,7 @@
 /*Includes for std functions*/
 # include <unistd.h>
 # include <stdlib.h>
+#include <stdio.h>
 
 /*Other utils headers*/
 #include "./libft/libft.h"
@@ -21,6 +22,7 @@ typedef struct s_stack
 	t_node	*bottom;
 } t_stack;
 
+void stack_print(t_stack *stack);
 
 /*list tools prototypes | All defined at --> ./llist_tools.c */
 t_node	*new_node(int value);
