@@ -119,7 +119,7 @@ void	apply_moves(t_stack *stack_a, t_stack *stack_b, int fd)
 			return ;
 		}
 		if (!move_isvalide(move))
-			quit(stack_a, stack_b);
+			return (free(move), quit(stack_a, stack_b));
 		apply_move(stack_a, stack_b, move);
 		free(move);
 		move = get_line(fd);
