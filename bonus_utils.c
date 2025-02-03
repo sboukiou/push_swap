@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:42:51 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/03 15:46:43 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:52:47 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,3 @@ void	apply_move(t_stack *stack_a, t_stack *stack_b, char *move)
 	else if (!ft_strncmp(move, "pb\n", 3))
 		pab(stack_a, stack_b, NULL);
 }
-

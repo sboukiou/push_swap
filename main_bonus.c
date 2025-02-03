@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:52:57 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/03 15:44:46 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:51:45 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	apply_moves(t_stack *stack_a, t_stack *stack_b, int fd)
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
@@ -75,9 +75,9 @@ int main(int ac, char **av)
 		return (0);
 	apply_moves(stack_a, stack_b, STDIN_FILENO);
 	if (stack_issorted(stack_a))
-	 write(STDOUT_FILENO, "OK\n", 3);
+		write(STDOUT_FILENO, "OK\n", 3);
 	else
-	 write(STDOUT_FILENO, "KO\n", 3);
+		write(STDOUT_FILENO, "KO\n", 3);
 	stack_free(stack_a);
 	stack_free(stack_b);
 }

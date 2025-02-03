@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 11:25:43 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/02 11:27:07 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:51:58 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 /*Includes for std functions*/
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 /*Other utils headers*/
 # include "./libft/libft.h"
