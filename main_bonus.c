@@ -93,8 +93,9 @@ static char	*get_line(int fd)
 	idx = 0;
 	while (byte_read > 0)
 	{
-		line[idx] = byte;
-		if (byte == '\n' || idx == 4)
+		if (idx < 4)
+			line[idx] = byte;
+		if (byte == '\n')
 			return (line);
 		idx++;
 		byte_read = read(fd, &byte, 1);
