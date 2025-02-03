@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 11:24:18 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/02 11:24:43 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:36:12 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	list_free(char **list)
 {
 	int	idx;
 
+	if (!list)
+		return ;
 	idx = 0;
 	while (list[idx])
 	{
@@ -59,8 +61,12 @@ t_stack	*parser(char **av)
 	stack = stack_new(NULL, NULL);
 	while (av[idx])
 	{
+		if (av[idx] && !ft_strlen(av[idx]))
+			quit(stack, NULL);
 		list = ft_split(av[idx], ' ');
 		jdx = 0;
+		if (!list[jdx] || !ft_strlen(list[idx]))
+			quit(stack, list);
 		while (list[jdx])
 		{
 			temp = ft_atoi(list[jdx]);
