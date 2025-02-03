@@ -7,7 +7,7 @@ LIBFT_SRCS=./libft/ft_atoi.c  ./libft/ft_isdigit.c  ./libft/ft_memcmp.c\
 SHARED_SRCS=actions.c llist_tools_basic.c llist_tools_last.c parser.c llist_tools_more.c  simple_sorters.c sorter.c ref_utils.c advanced_actions.c
 
 MANDATORY=main.c
-BONUS_SRC=bonus.c
+BONUS_SRC=main_bonus.c
 BONUS=checker
 
 GEN=gen
@@ -24,10 +24,12 @@ gen:
 	$(CC) $(GEN) $(GEN_SOURCE)
 
 clean:
-	$(RM) $(NAME) $(GEN)
+	$(RM) $(NAME) $(GEN) $(BONUS)
 
 fclean:
-	$(RM) $(NAME) $(GEN)
+	$(RM) $(NAME) $(GEN) $(BONUS)
+
+re: fclean all
 
 bonus: $(BONUS_SRC) $(LIBFT_SRCS) $(SHARED_SRCS)
 	$(CC) $(BONUS) $(SHARED_SRCS) $(LIBFT_SRCS) $(BONUS_SRC)
