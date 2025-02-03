@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 11:24:18 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/02 11:24:43 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:27:22 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	list_free(char **list)
 {
 	int	idx;
 
+	if (!list)
+		return ;
 	idx = 0;
 	while (list[idx])
 	{
@@ -47,27 +49,37 @@ static void	quit(t_stack *stack, char **list)
 	exit(0);
 }
 
+void	check_one_num(char *num, char **list, t_stack *stack)
+{
+	int	temp;
+
+	temp = ft_atoi(num);
+	if ((temp == -1 && ft_strcmp(num, "-1"))
+		|| deja_vue(stack, temp))
+		quit(stack, list);
+	stack_push_back(stack, new_node(temp));
+}
+
 t_stack	*parser(char **av)
 {
-	int		idx;
-	int		jdx;
-	int		temp;
 	char	**list;
 	t_stack	*stack;
+	int idx;
+	int jdx;
 
 	idx = 1;
 	stack = stack_new(NULL, NULL);
 	while (av[idx])
 	{
+		if (!ft_strlen(av[idx]))
+			quit(stack, NULL);
 		list = ft_split(av[idx], ' ');
 		jdx = 0;
+		if (!list[jdx] || !ft_strlen(list[jdx]))
+			quit(stack, list);
 		while (list[jdx])
 		{
-			temp = ft_atoi(list[jdx]);
-			if ((temp == -1 && ft_memcmp(list[jdx], "-1", 2))
-				|| deja_vue(stack, temp))
-				quit(stack, list);
-			stack_push_back(stack, new_node(temp));
+			check_one_num(list[jdx], list, stack);
 			jdx++;
 		}
 		list_free(list);
