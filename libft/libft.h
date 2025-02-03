@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:04:31 by sboukiou          #+#    #+#             */
-/*   Updated: 2024/11/01 23:02:52 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:09:19 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 int		ft_isdigit(int c);
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int	ft_strcmp(const char *s1, const char *s2);
 int		ft_memcmp(const void *s1, const void *s2, unsigned int n);
 int		ft_atoi(const char *nptr);
 char	**ft_split(const char *s, char c);
