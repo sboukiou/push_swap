@@ -72,4 +72,5 @@ void	sorter(t_stack *stack_a, t_stack *stack_b)
 	}
 	while (stack_b->top)
 		find_and_push_b(stack_a, stack_b, ref[--size]);
+	free(ref);
 }

@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:56:48 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/03 09:59:50 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:46:55 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,9 @@
 
 /*Other utils headers*/
 # include "./libft/libft.h"
+#include "push_swap.h"
 
+int	move_isvalide(char *move);
+void	quit(t_stack *stack_a, t_stack *stack_b);
+void	apply_move(t_stack *stack_a, t_stack *stack_b, char *move);
 #endif
