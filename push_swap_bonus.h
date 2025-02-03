@@ -20,9 +20,5 @@
 
 /*Other utils headers*/
 # include "./libft/libft.h"
-typedef struct s_action {
-	char			*name;
-	struct s_action	*next;
-}	t_action;
 
 #endif
