@@ -12,20 +12,6 @@
 
 #include "./push_swap.h"
 
-/*void stack_print(t_stack *stack)*/
-/*{*/
-/*	t_node *temp;*/
-/**/
-/*	if (!stack)*/
-/*		return ;*/
-/*	temp = stack->top;*/
-/*	while (temp)*/
-/*	{*/
-/*		printf(" %d -> ", temp->value);*/
-/*		temp = temp->next;*/
-/*	}*/
-/*	printf("\n");*/
-/*}*/
 
 int	main(int ac, char **av)
 {

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "./push_swap.h"
 
 void	quit(t_stack *stack_a, t_stack *stack_b)
@@ -56,15 +57,15 @@ static void	apply_move(t_stack *stack_a, t_stack *stack_b, char *move)
 	if (!ft_strncmp(move, "rra\n", 4))
 		rrab(stack_a, NULL);
 	else if (!ft_strncmp(move, "rrb\n", 4))
-		rrab(stack_a, NULL);
+		rrab(stack_b, NULL);
 	else if (!ft_strncmp(move, "ra\n", 3))
 		rab(stack_a, NULL);
 	else if (!ft_strncmp(move, "rb\n", 3))
-		rab(stack_a, NULL);
+		rab(stack_b, NULL);
 	else if (!ft_strncmp(move, "rr\n", 3))
-		return (rrab(stack_a, NULL), rrab(stack_a, NULL));
+		return (rab(stack_b, NULL), rab(stack_a, NULL));
 	else if (!ft_strncmp(move, "rrr\n", 4))
-		return (rab(stack_a,NULL), rab(stack_a,NULL));
+		return (rrab(stack_b,NULL), rrab(stack_a,NULL));
 	else if (!ft_strncmp(move, "sa\n", 3))
 			sab(stack_a, NULL);
 	else if (!ft_strncmp(move, "sb\n", 3))
@@ -77,34 +78,50 @@ static void	apply_move(t_stack *stack_a, t_stack *stack_b, char *move)
 			pab(stack_a, stack_b, NULL);
 }
 
+static char	*get_line(int fd)
+{
+	char	(*line), (byte);
+	int		(idx), (byte_read);
+
+	if (fd < 0 || fd > 1024)
+		return (NULL);
+	idx = 0;
+	byte_read = read(fd, &byte, 1);
+	line = ft_calloc(5, sizeof(char));
+	if (!line)
+		return (NULL);
+	idx = 0;
+	while (byte_read > 0)
+	{
+		line[idx] = byte;
+		if (byte == '\n' || idx == 4)
+			return (line);
+		idx++;
+		byte_read = read(fd, &byte, 1);
+	}
+	return (line);
+}
+
 
 void	apply_moves(t_stack *stack_a, t_stack *stack_b, int fd)
 {
-	char	move[4];
-	char	byte;
-	int		bytes_read;
-	int		idx;
+	char	(*move);
 
-	if (fd < 0 || fd > 1024)
-		return ;
-	bytes_read = read(fd, &byte, 1);
-	while (bytes_read)
+	move = get_line(fd);
+	while (move)
 	{
-		idx = 0;
-		while (bytes_read)
+		if (!move)
+			quit(stack_a, stack_b);
+		if (!move[0])
 		{
-			move[idx] = byte;
-			idx++;
-			if (idx == 4)
-			{
-				move[idx] = '\0';
-				idx = 0;
-			}
-			bytes_read = read(fd, &byte, 1);
+			free(move);
+			return ;
 		}
 		if (!move_isvalide(move))
 			quit(stack_a, stack_b);
 		apply_move(stack_a, stack_b, move);
+		free(move);
+		move = get_line(fd);
 	}
 }
 
@@ -135,7 +152,6 @@ int main(int ac, char **av)
 	if (!stack_a || !stack_b)
 		return (0);
 	apply_moves(stack_a, stack_b, STDIN_FILENO);
-	stack_print(stack_a);
 	if (stack_issorted(stack_a))
 	 write(STDOUT_FILENO, "OK\n", 3);
 	else
