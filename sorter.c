@@ -60,7 +60,7 @@ void	sorter(t_stack *stack_a, t_stack *stack_b)
 	start = 0;
 	end = size / 6;
 	if (size > 100)
-		end = 14;
+		end = size / 14;
 	while (stack_a->top)
 	{
 		if (includes(ref, stack_a->top->value, start))
