@@ -7,7 +7,7 @@ LIBFT_SRCS=./libft/ft_atoi.c  ./libft/ft_isdigit.c  ./libft/ft_memcmp.c\
 SHARED_SRCS=actions.c llist_tools_basic.c llist_tools_last.c parser.c llist_tools_more.c  simple_sorters.c sorter.c ref_utils.c advanced_actions.c
 
 MANDATORY=main.c
-BONUS_SRC=main_bonus.c
+BONUS_SRC=main_bonus.c bonus_utils.c
 BONUS=checker
 
 GEN=gen
