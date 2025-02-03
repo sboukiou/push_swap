@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 18:24:19 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/02 11:16:10 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:29:40 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	ft_atoi(const char *nptr)
 	else if (nptr[count] == '+')
 		count++;
 	num = 0;
+	if (!ft_isdigit(nptr[count]))
+		return (-1);
 	while (ft_isdigit(nptr[count]) && nptr[count])
 	{
 		num = (num * 10) + nptr[count] - '0';
