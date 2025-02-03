@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:52:57 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/03 15:44:46 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:25:47 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int main(int ac, char **av)
 	if (!stack_a || !stack_b)
 		return (0);
 	apply_moves(stack_a, stack_b, STDIN_FILENO);
-	if (stack_issorted(stack_a))
+	if (stack_issorted(stack_a) && !stack_b->top)
 	 write(STDOUT_FILENO, "OK\n", 3);
 	else
 	 write(STDOUT_FILENO, "KO\n", 3);
