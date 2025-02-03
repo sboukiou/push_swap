@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 11:24:18 by sboukiou          #+#    #+#             */
-/*   Updated: 2025/02/03 17:27:22 by sboukiou         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:32:43 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ t_stack	*parser(char **av)
 {
 	char	**list;
 	t_stack	*stack;
-	int idx;
-	int jdx;
+	int		idx;
+	int		jdx;
 
 	idx = 1;
 	stack = stack_new(NULL, NULL);
