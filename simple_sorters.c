@@ -53,4 +53,5 @@ void	sort_size_four_five(t_stack *stack_a, t_stack *stack_b)
 	sort_size_three(stack_a);
 	pab(stack_b, stack_a, "pa\n");
 	pab(stack_b, stack_a, "pa\n");
+	stack_free(ref);
 }

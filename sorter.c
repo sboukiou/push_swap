@@ -16,6 +16,7 @@ static int	*init_algo(t_stack *stack_a, t_stack *stack_b)
 {
 	int	*ref;
 
+	ref = NULL;
 	if (stack_issorted(stack_a))
 		return (NULL);
 	if (stack_size(stack_a) == 2)
